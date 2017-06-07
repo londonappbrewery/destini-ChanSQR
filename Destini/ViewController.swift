@@ -32,29 +32,80 @@ class ViewController: UIViewController {
     @IBOutlet weak var storyTextView: UILabel!
     
     // TODO Step 5: Initialise instance variables here
-    
-    
-    
+    var storyIndex : Int = 1
+    var pickedAnswerA : Bool = false
+    var pickedAnswerB : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         // TODO Step 3: Set the text for the storyTextView, topButton, bottomButton, and to T1_Story, T1_Ans1, and T1_Ans2
         
+            storyTextView.text = story1
+            topButton.setTitle(answer1a, for: .normal)
+            bottomButton.setTitle(answer1b, for: .normal)
+        
+        
     }
-
     
     // User presses one of the buttons
     @IBAction func buttonPressed(_ sender: UIButton) {
     
         // TODO Step 4: Write an IF-Statement to update the views
-                
+        
+        if sender.tag == 1 {
+            pickedAnswerA = true
+        }
+        else if sender.tag == 2 {
+            pickedAnswerB = true
+        }
+        
+        if pickedAnswerA == true  && (storyIndex == 1 || storyIndex == 2){
+            storyTextView.text = story3
+            topButton.setTitle(answer3a, for: .normal)
+            bottomButton.setTitle(answer3b, for: .normal)
+            pickedAnswerA = false
+            storyIndex = 3
+        }
+        else if pickedAnswerB == true && storyIndex == 1 {
+                storyTextView.text = story2
+                topButton.setTitle(answer2a, for: .normal)
+                bottomButton.setTitle(answer2b, for: .normal)
+                pickedAnswerB = false
+                storyIndex = 2
+            }
+        else if pickedAnswerB == true && storyIndex == 2 {
+                storyTextView.text = story4
+                topButton.isHidden = true
+                bottomButton.isHidden = true
+                pickedAnswerB = false
+                storyIndex = 4
+            }
+        if pickedAnswerA == true  && storyIndex == 3 {
+            storyTextView.text = story6
+            topButton.isHidden = true
+            bottomButton.isHidden = true
+            pickedAnswerA = false
+            storyIndex = 6
+        }
+        else if pickedAnswerB == true && storyIndex == 3 {
+            storyTextView.text = story5
+            topButton.isHidden = true
+            bottomButton.isHidden = true
+            pickedAnswerB = false
+            storyIndex = 5
+        }
+        
+
+        
+        
+print(storyIndex)
+        
+        
         // TODO Step 6: Modify the IF-Statement to complete the story
         
-    
+
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
